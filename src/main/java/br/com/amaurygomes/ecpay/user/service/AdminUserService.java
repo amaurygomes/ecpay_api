@@ -2,6 +2,7 @@ package br.com.amaurygomes.ecpay.user.service;
 
 import br.com.amaurygomes.ecpay.user.dto.AdminUserResponse;
 import br.com.amaurygomes.ecpay.user.dto.CreateAdminUserRequest;
+import br.com.amaurygomes.ecpay.user.dto.UpdateAdminUserRequest;
 import br.com.amaurygomes.ecpay.user.entity.AdminUser;
 import br.com.amaurygomes.ecpay.user.entity.User;
 import br.com.amaurygomes.ecpay.user.repository.UserRepository;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+
+import static org.springframework.util.StringUtils.hasText;
 
 @Service
 public class AdminUserService {
@@ -38,6 +41,29 @@ public class AdminUserService {
                 savedUser.getName(),
                 savedUser.getLogin(),
                 ((AdminUser) savedUser).getRole().name());
+    }
+
+    public AdminUserResponse update(String id, UpdateAdminUserRequest request){
+        AdminUser adminUser = (AdminUser) userRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        if(hasText(request.name())){
+            adminUser.setName(request.name());
+        }
+        if(hasText(request.login())){
+            isLoginAlreadyRegistered(request.login());
+            adminUser.setLogin(request.login());
+        }
+        if(hasText(request.password())){
+            adminUser.setEncodedPassword(request.password());
+        }
+        if(request.role() != null){
+            adminUser.setRole(request.role());
+        }
+        userRepository.save(adminUser);
+        return new AdminUserResponse(adminUser.getId(),
+                adminUser.getName(),
+                adminUser.getLogin(),
+                adminUser.getRole().name());
     }
     
     public List<AdminUserResponse> findAll(){

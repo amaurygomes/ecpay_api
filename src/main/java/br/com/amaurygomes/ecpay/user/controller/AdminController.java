@@ -2,6 +2,7 @@ package br.com.amaurygomes.ecpay.user.controller;
 
 import br.com.amaurygomes.ecpay.user.dto.AdminUserResponse;
 import br.com.amaurygomes.ecpay.user.dto.CreateAdminUserRequest;
+import br.com.amaurygomes.ecpay.user.dto.UpdateAdminUserRequest;
 import br.com.amaurygomes.ecpay.user.service.AdminUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +19,13 @@ public class AdminController {
     private final AdminUserService adminUserService;
 
     @PostMapping
-    public ResponseEntity<AdminUserResponse> createAdmin(@Valid @RequestBody CreateAdminUserRequest request){
+    public ResponseEntity<AdminUserResponse> create(@Valid @RequestBody CreateAdminUserRequest request){
         return ResponseEntity.ok(adminUserService.create(request));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AdminUserResponse> update(@PathVariable String id, @RequestBody UpdateAdminUserRequest request){
+        return ResponseEntity.ok(adminUserService.update(id, request));
     }
 
     @GetMapping
@@ -31,7 +37,6 @@ public class AdminController {
     public ResponseEntity<AdminUserResponse> findById(@PathVariable String id){
         return ResponseEntity.ok(adminUserService.findById(id));
     }
-
     @DeleteMapping("/{id}")
 
     public ResponseEntity<Void> delete(@PathVariable UUID id){
