@@ -57,13 +57,24 @@ public class AdminUserService {
     }
 
     public AdminUserResponse findById(String id){
-        return null;
+        User user = userRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        if (user instanceof AdminUser adminUser) {
+            return new AdminUserResponse(
+                    adminUser.getId(),
+                    adminUser.getName(),
+                    adminUser.getLogin(),
+                    adminUser.getRole().name()
+            );
+        } else {
+            throw new IllegalArgumentException("User is not an AdminUser");
+        }
     }
 
-    public void delete(String id){
-        if (userRepository.findById(UUID.fromString(id)).isEmpty()){
+    public void delete(UUID id){
+        if (userRepository.findById(id).isEmpty()){
             throw new IllegalArgumentException("User not found");
         }
-        userRepository.deleteById(UUID.fromString(id));
+        userRepository.deleteById(id);
     }
 }

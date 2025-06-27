@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/admin")
@@ -25,4 +26,17 @@ public class AdminController {
     public ResponseEntity<List<AdminUserResponse>> findAll(){
         return ResponseEntity.ok(adminUserService.findAll());
     }
+
+    @GetMapping("/{id}" )
+    public ResponseEntity<AdminUserResponse> findById(@PathVariable String id){
+        return ResponseEntity.ok(adminUserService.findById(id));
+    }
+
+    @DeleteMapping("/{id}")
+
+    public ResponseEntity<Void> delete(@PathVariable UUID id){
+        adminUserService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
