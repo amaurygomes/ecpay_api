@@ -16,23 +16,21 @@ import static org.springframework.util.StringUtils.hasText;
 
 @Service
 public class AdminUserService {
-    private     final UserRepository userRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
-    public AdminUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AdminUserService(UserRepository userRepository,
+                            PasswordEncoder passwordEncoder,
+                            UserService userService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-    }
+        this.userService = userService;
 
-    private boolean isLoginAlreadyRegistered(String login){
-        if (userRepository.findByLogin(login).isPresent()){
-            throw new IllegalArgumentException("User already registered");
-        }
-        return false;
     }
 
     public AdminUserResponse create(CreateAdminUserRequest request){
-        isLoginAlreadyRegistered(request.login());
+        userService.isLoginAlreadyRegistered(request.login());
         AdminUser newAdmin = AdminUser.builder()
                 .name(request.name())
                 .login(request.login())
@@ -46,14 +44,13 @@ public class AdminUserService {
                 ((AdminUser) savedUser).getRole().name());
     }
 
-    public AdminUserResponse update(String id, UpdateAdminUserRequest request){
-        AdminUser adminUser = (AdminUser) userRepository.findById(UUID.fromString(id))
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    public AdminUserResponse update(UUID id, UpdateAdminUserRequest request){
+        AdminUser adminUser = (AdminUser) userService.existsUserById(id);
         if(hasText(request.name())){
             adminUser.setName(request.name());
         }
         if(hasText(request.login())){
-            isLoginAlreadyRegistered(request.login());
+            userService.isLoginAlreadyRegistered(request.login());
             adminUser.setLogin(request.login());
         }
         if(hasText(request.password())){
@@ -85,9 +82,8 @@ public class AdminUserService {
                 .toList();
     }
 
-    public AdminUserResponse findById(String id){
-        User user = userRepository.findById(UUID.fromString(id))
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    public AdminUserResponse findById(UUID id){
+        User user = userService.existsUserById(id);
         if (user instanceof AdminUser adminUser) {
             return new AdminUserResponse(
                     adminUser.getId(),
@@ -101,9 +97,7 @@ public class AdminUserService {
     }
 
     public void delete(UUID id){
-        if (userRepository.findById(id).isEmpty()){
-            throw new IllegalArgumentException("User not found");
-        }
+        userService.existsUserById(id);
         userRepository.deleteById(id);
     }
 }

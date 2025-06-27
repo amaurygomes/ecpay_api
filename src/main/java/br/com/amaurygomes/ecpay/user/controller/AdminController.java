@@ -24,7 +24,7 @@ public class AdminController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AdminUserResponse> update(@PathVariable String id, @RequestBody UpdateAdminUserRequest request){
+    public ResponseEntity<AdminUserResponse> update(@PathVariable UUID id, @RequestBody UpdateAdminUserRequest request){
         return ResponseEntity.ok(adminUserService.update(id, request));
     }
 
@@ -34,7 +34,7 @@ public class AdminController {
     }
 
     @GetMapping("/{id}" )
-    public ResponseEntity<AdminUserResponse> findById(@PathVariable String id){
+    public ResponseEntity<AdminUserResponse> findById(@PathVariable UUID id){
         return ResponseEntity.ok(adminUserService.findById(id));
     }
     @DeleteMapping("/{id}")
