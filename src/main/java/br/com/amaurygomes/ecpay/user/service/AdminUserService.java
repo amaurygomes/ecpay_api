@@ -6,6 +6,7 @@ import br.com.amaurygomes.ecpay.user.dto.UpdateAdminUserRequest;
 import br.com.amaurygomes.ecpay.user.entity.AdminUser;
 import br.com.amaurygomes.ecpay.user.entity.User;
 import br.com.amaurygomes.ecpay.user.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +17,11 @@ import static org.springframework.util.StringUtils.hasText;
 @Service
 public class AdminUserService {
     private     final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AdminUserService(UserRepository userRepository) {
+    public AdminUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     private boolean isLoginAlreadyRegistered(String login){
@@ -33,7 +36,7 @@ public class AdminUserService {
         AdminUser newAdmin = AdminUser.builder()
                 .name(request.name())
                 .login(request.login())
-                .encodedPassword(request.password())
+                .encodedPassword(passwordEncoder.encode(request.password()))
                 .role(request.role())
                 .build();
         User savedUser = userRepository.save(newAdmin);
@@ -54,7 +57,7 @@ public class AdminUserService {
             adminUser.setLogin(request.login());
         }
         if(hasText(request.password())){
-            adminUser.setEncodedPassword(request.password());
+            adminUser.setEncodedPassword(passwordEncoder.encode(request.password()));
         }
         if(request.role() != null){
             adminUser.setRole(request.role());
