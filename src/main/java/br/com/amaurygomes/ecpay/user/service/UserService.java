@@ -3,6 +3,7 @@ package br.com.amaurygomes.ecpay.user.service;
 import br.com.amaurygomes.ecpay.user.entity.AdminUser;
 import br.com.amaurygomes.ecpay.user.entity.User;
 import br.com.amaurygomes.ecpay.user.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -26,7 +27,7 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public User existsUserByLogin(String login){
+    public UserDetails existsUserByLogin(String login){
         if (userRepository.findByLogin(login).isEmpty()){
             throw new IllegalArgumentException("User not found");
         }

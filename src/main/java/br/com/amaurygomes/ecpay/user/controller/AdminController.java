@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/user/admin")
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminUserService adminUserService;

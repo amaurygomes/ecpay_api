@@ -11,7 +11,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class AdminUser extends User{
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role = Role.ADMIN;
+
 }
