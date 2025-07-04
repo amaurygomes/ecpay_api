@@ -1,4 +1,4 @@
-package br.com.amaurygomes.ecpay.security;
+package br.com.amaurygomes.ecpay.config.security;
 
 import br.com.amaurygomes.ecpay.auth.TokenService;
 import br.com.amaurygomes.ecpay.user.repository.UserRepository;

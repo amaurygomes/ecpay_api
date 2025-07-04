@@ -4,6 +4,8 @@ import br.com.amaurygomes.ecpay.user.dto.CreateDeliveryUserRequest;
 import br.com.amaurygomes.ecpay.user.dto.DeliveryUserResponse;
 import br.com.amaurygomes.ecpay.user.dto.UpdateDeliveryUserRequest;
 import br.com.amaurygomes.ecpay.user.service.DeliveryUserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/user/delivery")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Delivery Users" , description = "Endpoints para gerenciamento de entregadores" )
 public class DeliveryUserController {
     private final DeliveryUserService deliveryUserService;
 

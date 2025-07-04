@@ -1,4 +1,4 @@
-package br.com.amaurygomes.ecpay.security;
+package br.com.amaurygomes.ecpay.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -39,6 +39,11 @@ public class SecurityConfig {
                     req.requestMatchers("/system/**").hasRole("SUPER_ADMIN");
                     req.requestMatchers("/user/admin/**").hasAnyRole("SUPER_ADMIN", "ADMIN");
                     req.requestMatchers("/user/delivery/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "DELIVERY");
+                    req.requestMatchers(
+                            "/v3/api-docs/**",
+                            "/swagger-ui/**",
+                            "/swagger-ui.html"
+                    ).permitAll();
                     req.anyRequest().authenticated();
                 });
         return http.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

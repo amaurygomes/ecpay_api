@@ -4,6 +4,7 @@ import br.com.amaurygomes.ecpay.user.dto.AdminUserResponse;
 import br.com.amaurygomes.ecpay.user.dto.CreateAdminUserRequest;
 import br.com.amaurygomes.ecpay.user.entity.AdminUser;
 import br.com.amaurygomes.ecpay.user.service.AdminUserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication" , description = "Endpoints para autenticação e registro de usuários" )
 public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final AdminUserService adminUserService;
