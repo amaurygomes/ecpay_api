@@ -29,7 +29,7 @@ public class AdminController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AdminUserResponse> update(@PathVariable UUID id, @RequestBody UpdateAdminUserRequest request){
+    public ResponseEntity<AdminUserResponse> update(@PathVariable UUID id,@Valid @RequestBody UpdateAdminUserRequest request){
         return ResponseEntity.ok(adminUserService.update(id, request));
     }
 

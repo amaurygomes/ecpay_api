@@ -1,6 +1,6 @@
 package br.com.amaurygomes.ecpay.user.service;
 
-import br.com.amaurygomes.ecpay.user.entity.AdminUser;
+import br.com.amaurygomes.ecpay.exception.UserAlreadyRegistredException;
 import br.com.amaurygomes.ecpay.user.entity.User;
 import br.com.amaurygomes.ecpay.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +16,7 @@ public class UserService {
     }
     public void isLoginAlreadyRegistered(String login){
         if (userRepository.findByLogin(login).isPresent()){
-            throw new IllegalArgumentException("User already registered");
+            throw new UserAlreadyRegistredException();
         }
     }
 

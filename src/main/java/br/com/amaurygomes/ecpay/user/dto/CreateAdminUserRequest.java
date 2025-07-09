@@ -14,7 +14,7 @@ public record CreateAdminUserRequest(
     @Size(min = 3, max = 20, message = "Login must be between 3 and 20 characters")
     String login,
     @NotBlank(message = "Password is required")
-    @Min(8)
+    @Size(min = 8, max = 20, message = "Password must be at least 8 characters")
     String password,
     @NotNull(message = "Role is required")
     Role role

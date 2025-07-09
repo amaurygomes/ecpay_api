@@ -30,7 +30,7 @@ public class DeliveryUserController {
     }
 
     @PutMapping
-    public ResponseEntity<DeliveryUserResponse> update(@PathVariable UUID id, @RequestBody UpdateDeliveryUserRequest request){
+    public ResponseEntity<DeliveryUserResponse> update(@PathVariable UUID id, @Valid @RequestBody UpdateDeliveryUserRequest request){
         return ResponseEntity.ok(deliveryUserService.update(id, request));
 
     }
