@@ -1,6 +1,6 @@
-package br.com.amaurygomes.ecpay.auth;
+package br.com.amaurygomes.ecpay.features.auth;
 
-import br.com.amaurygomes.ecpay.user.entity.User;
+import br.com.amaurygomes.ecpay.features.user.entity.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

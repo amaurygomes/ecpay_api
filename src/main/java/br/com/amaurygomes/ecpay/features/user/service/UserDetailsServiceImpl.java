@@ -1,6 +1,6 @@
-package br.com.amaurygomes.ecpay.user.service;
+package br.com.amaurygomes.ecpay.features.user.service;
 
-import br.com.amaurygomes.ecpay.user.repository.UserRepository;
+import br.com.amaurygomes.ecpay.features.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

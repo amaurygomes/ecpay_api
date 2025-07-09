@@ -1,7 +1,7 @@
 package br.com.amaurygomes.ecpay.config.security;
 
-import br.com.amaurygomes.ecpay.auth.TokenService;
-import br.com.amaurygomes.ecpay.user.repository.UserRepository;
+import br.com.amaurygomes.ecpay.features.auth.TokenService;
+import br.com.amaurygomes.ecpay.features.user.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

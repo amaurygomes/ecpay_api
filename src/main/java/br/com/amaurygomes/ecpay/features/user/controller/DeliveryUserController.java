@@ -1,9 +1,9 @@
-package br.com.amaurygomes.ecpay.user.controller;
+package br.com.amaurygomes.ecpay.features.user.controller;
 
-import br.com.amaurygomes.ecpay.user.dto.CreateDeliveryUserRequest;
-import br.com.amaurygomes.ecpay.user.dto.DeliveryUserResponse;
-import br.com.amaurygomes.ecpay.user.dto.UpdateDeliveryUserRequest;
-import br.com.amaurygomes.ecpay.user.service.DeliveryUserService;
+import br.com.amaurygomes.ecpay.features.user.dto.CreateDeliveryUserRequest;
+import br.com.amaurygomes.ecpay.features.user.dto.DeliveryUserResponse;
+import br.com.amaurygomes.ecpay.features.user.dto.UpdateDeliveryUserRequest;
+import br.com.amaurygomes.ecpay.features.user.service.DeliveryUserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

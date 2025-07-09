@@ -1,6 +1,6 @@
-package br.com.amaurygomes.ecpay.user.repository;
+package br.com.amaurygomes.ecpay.features.user.repository;
 
-import br.com.amaurygomes.ecpay.user.entity.User;
+import br.com.amaurygomes.ecpay.features.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;

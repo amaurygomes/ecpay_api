@@ -1,12 +1,12 @@
-package br.com.amaurygomes.ecpay.user.service;
+package br.com.amaurygomes.ecpay.features.user.service;
 
 import br.com.amaurygomes.ecpay.exception.UserNotFoundException;
-import br.com.amaurygomes.ecpay.user.dto.CreateDeliveryUserRequest;
-import br.com.amaurygomes.ecpay.user.dto.DeliveryUserResponse;
-import br.com.amaurygomes.ecpay.user.dto.UpdateDeliveryUserRequest;
-import br.com.amaurygomes.ecpay.user.entity.DeliveryUser;
-import br.com.amaurygomes.ecpay.user.entity.User;
-import br.com.amaurygomes.ecpay.user.repository.UserRepository;
+import br.com.amaurygomes.ecpay.features.user.dto.CreateDeliveryUserRequest;
+import br.com.amaurygomes.ecpay.features.user.dto.DeliveryUserResponse;
+import br.com.amaurygomes.ecpay.features.user.dto.UpdateDeliveryUserRequest;
+import br.com.amaurygomes.ecpay.features.user.entity.DeliveryUser;
+import br.com.amaurygomes.ecpay.features.user.entity.User;
+import br.com.amaurygomes.ecpay.features.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

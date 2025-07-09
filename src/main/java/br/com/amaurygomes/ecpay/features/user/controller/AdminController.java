@@ -1,11 +1,10 @@
-package br.com.amaurygomes.ecpay.user.controller;
+package br.com.amaurygomes.ecpay.features.user.controller;
 
-import br.com.amaurygomes.ecpay.user.dto.AdminUserResponse;
-import br.com.amaurygomes.ecpay.user.dto.CreateAdminUserRequest;
-import br.com.amaurygomes.ecpay.user.dto.UpdateAdminUserRequest;
-import br.com.amaurygomes.ecpay.user.service.AdminUserService;
+import br.com.amaurygomes.ecpay.features.user.dto.AdminUserResponse;
+import br.com.amaurygomes.ecpay.features.user.dto.CreateAdminUserRequest;
+import br.com.amaurygomes.ecpay.features.user.dto.UpdateAdminUserRequest;
+import br.com.amaurygomes.ecpay.features.user.service.AdminUserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

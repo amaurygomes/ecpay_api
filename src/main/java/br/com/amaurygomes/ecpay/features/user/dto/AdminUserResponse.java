@@ -1,4 +1,4 @@
-package br.com.amaurygomes.ecpay.user.dto;
+package br.com.amaurygomes.ecpay.features.user.dto;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package br.com.amaurygomes.ecpay.user.entity;
+package br.com.amaurygomes.ecpay.features.user.entity;
 
 public enum PlatformStatus {
     ACTIVE,

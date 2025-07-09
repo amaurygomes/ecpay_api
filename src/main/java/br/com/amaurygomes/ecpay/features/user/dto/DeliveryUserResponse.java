@@ -1,6 +1,6 @@
-package br.com.amaurygomes.ecpay.user.dto;
+package br.com.amaurygomes.ecpay.features.user.dto;
 
-import br.com.amaurygomes.ecpay.user.entity.PlatformStatus;
+import br.com.amaurygomes.ecpay.features.user.entity.PlatformStatus;
 
 import java.util.UUID;
 
