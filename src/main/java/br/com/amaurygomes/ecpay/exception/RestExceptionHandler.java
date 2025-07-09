@@ -25,6 +25,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(threatResponse);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    private ResponseEntity<RestErrorMessage> userNotFound(UserNotFoundException exception){
+        RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(threatResponse);
+    }
+
+
     @ExceptionHandler(RuntimeException.class)
     private ResponseEntity<RestErrorMessage> runtimeException(RuntimeException exception){
         RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());

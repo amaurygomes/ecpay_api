@@ -1,6 +1,7 @@
 package br.com.amaurygomes.ecpay.user.service;
 
 import br.com.amaurygomes.ecpay.exception.UserAlreadyRegistredException;
+import br.com.amaurygomes.ecpay.exception.UserNotFoundException;
 import br.com.amaurygomes.ecpay.user.entity.User;
 import br.com.amaurygomes.ecpay.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,14 +23,14 @@ public class UserService {
 
     public User existsUserById(UUID id){
         if (userRepository.findById(id).isEmpty()){
-            throw new IllegalArgumentException("User not found");
+            throw new UserNotFoundException();
         }
         return userRepository.findById(id).get();
     }
 
     public UserDetails existsUserByLogin(String login){
         if (userRepository.findByLogin(login).isEmpty()){
-            throw new IllegalArgumentException("User not found");
+            throw new UserNotFoundException();
         }
         return userRepository.findByLogin(login).get();
     }

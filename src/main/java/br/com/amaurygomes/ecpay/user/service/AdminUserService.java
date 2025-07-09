@@ -1,5 +1,6 @@
 package br.com.amaurygomes.ecpay.user.service;
 
+import br.com.amaurygomes.ecpay.exception.UserNotFoundException;
 import br.com.amaurygomes.ecpay.user.dto.AdminUserResponse;
 import br.com.amaurygomes.ecpay.user.dto.CreateAdminUserRequest;
 import br.com.amaurygomes.ecpay.user.dto.UpdateAdminUserRequest;
@@ -92,7 +93,7 @@ public class AdminUserService {
                     adminUser.getRole().name()
             );
         } else {
-            throw new IllegalArgumentException("User is not an AdminUser");
+            throw new UserNotFoundException();
         }
     }
 

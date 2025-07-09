@@ -1,5 +1,6 @@
 package br.com.amaurygomes.ecpay.user.service;
 
+import br.com.amaurygomes.ecpay.exception.UserNotFoundException;
 import br.com.amaurygomes.ecpay.user.dto.CreateDeliveryUserRequest;
 import br.com.amaurygomes.ecpay.user.dto.DeliveryUserResponse;
 import br.com.amaurygomes.ecpay.user.dto.UpdateDeliveryUserRequest;
@@ -106,7 +107,7 @@ public class DeliveryUserService {
                     deliveryUser.isActive()
             );
         } else {
-            throw new IllegalArgumentException("User is not a DeliveryUser");
+            throw new UserNotFoundException();
         }
     }
 
