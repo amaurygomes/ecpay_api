@@ -34,7 +34,7 @@ public class AuthenticationController {
         return ResponseEntity.ok().body(new LoginResponse(token));
     }
 
-    // Endipoint apeas para testes
+    // Endipoint apenas para testes
     @PostMapping("/register")
     public ResponseEntity<AdminUserResponse> create(@Valid @RequestBody CreateAdminUserRequest request){
         return ResponseEntity.ok(adminUserService.create(request));
