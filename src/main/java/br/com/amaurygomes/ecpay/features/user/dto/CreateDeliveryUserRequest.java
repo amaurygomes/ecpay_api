@@ -10,7 +10,7 @@ public record CreateDeliveryUserRequest(
     @Size(min = 3, message = "VTR must be at least 3")
     Long vtr,
     @NotBlank(message = "Login is required")
-    @Size(min = 3, max = 20, message = "Login must be between 3 and 20 characters")
+    @Pattern(regexp = "\\d{11}", message = "Login must be a valid CPF")
     String login,
     @NotBlank(message = "Password is required")
     @Size(min = 8, max = 20, message = "Password must be at least 8 characters")
