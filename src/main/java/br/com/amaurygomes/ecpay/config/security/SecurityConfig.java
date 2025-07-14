@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/auth/login", "/auth/register").permitAll(); //Endpoint Register Apenas para testes
+                    req.requestMatchers("/system/settings/**").permitAll();
                     req.requestMatchers("/system/**").hasRole("SUPER_ADMIN");
                     req.requestMatchers("/user/admin/**").hasAnyRole("SUPER_ADMIN", "ADMIN");
                     req.requestMatchers("/user/delivery/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "DELIVERY");
