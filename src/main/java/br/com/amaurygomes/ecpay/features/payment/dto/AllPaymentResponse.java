@@ -1,5 +1,6 @@
 package br.com.amaurygomes.ecpay.features.payment.dto;
 
+import br.com.amaurygomes.ecpay.features.payment.entity.BillingCycle;
 import br.com.amaurygomes.ecpay.features.payment.entity.Payment;
 
 import java.time.LocalDateTime;
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 public record AllPaymentResponse(
         String transactionId,
         Double amount,
+        BillingCycle billingCycle,
         String status,
         String observation,
         String deliveryUserId,
@@ -19,6 +21,7 @@ public record AllPaymentResponse(
         return new AllPaymentResponse(
                 payment.getTransactionId(),
                 payment.getAmount(),
+                payment.getBillingCycle(),
                 payment.getStatus().name(),
                 payment.getObservation(),
                 payment.getDeliveryUser().getId().toString(),

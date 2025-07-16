@@ -1,5 +1,6 @@
 package br.com.amaurygomes.ecpay.features.payment.dto;
 
+import br.com.amaurygomes.ecpay.features.payment.entity.BillingCycle;
 import br.com.amaurygomes.ecpay.features.payment.entity.PaymentStatus;
 import jakarta.validation.constraints.NotNull;
 
