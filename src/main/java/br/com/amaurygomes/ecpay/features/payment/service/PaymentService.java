@@ -8,13 +8,13 @@ import br.com.amaurygomes.ecpay.features.payment.entity.PaymentStatus;
 import br.com.amaurygomes.ecpay.features.payment.repository.PaymentRepository;
 import br.com.amaurygomes.ecpay.features.user.entity.DeliveryUser;
 import br.com.amaurygomes.ecpay.features.user.repository.UserRepository;
+import br.com.amaurygomes.ecpay.util.AmountPaymentUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -22,6 +22,8 @@ import java.util.UUID;
 public class PaymentService {
     private final PaymentRepository paymentRepository;
     private final UserRepository userRepository;
+    private final AmountPaymentUtils amountPaymentUtils;
+
 
     @Transactional
     public void savePayment(Payment payment, UUID userId) {
@@ -29,6 +31,8 @@ public class PaymentService {
         DeliveryUser deliveryUser = (DeliveryUser) userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Delivery User not found"));
         payment.setDeliveryUser(deliveryUser);
         payment.setStatus(PaymentStatus.PENDING);
+        Double paymentAmountValue = amountPaymentUtils.calculatePaymentValue(deliveryUser.getId(), payment.getBillingCycle());
+        payment.setAmount(paymentAmountValue);
         paymentRepository.save(payment);
     }
 
@@ -50,5 +54,13 @@ public class PaymentService {
 
     public Page<AllPaymentResponse> getAllPayments(Pageable pageable) {
         return paymentRepository.findAll(pageable).map(AllPaymentResponse::fromEntity);
+    }
+
+    @Transactional
+    public void refundPayment(String transactionId, String observation) {
+        Payment payment = paymentRepository.findByTransactionId(transactionId).orElseThrow(() -> new RuntimeException("Payment not found"));
+        payment.setStatus(PaymentStatus.REFUNDED);
+        payment.setObservation(observation);
+        paymentRepository.save(payment);
     }
 }

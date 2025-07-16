@@ -4,7 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetClientIpAddr {
+public class GetClientIpAddrUtils {
     private static final String[] IP_HEADER_CANDIDATES = {
                 "X-Forwarded-For",
                 "Proxy-Client-IP",

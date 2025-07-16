@@ -22,6 +22,7 @@ public class Payment {
     private String transactionId;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private BillingCycle billingCycle;
     private PaymentStatus status = PaymentStatus.PENDING;
     @Column(nullable = false)
     private Double amount;
