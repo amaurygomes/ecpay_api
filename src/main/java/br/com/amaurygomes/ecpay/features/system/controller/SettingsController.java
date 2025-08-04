@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/system/settings")
+@RequestMapping("/api/system/settings")
 @RequiredArgsConstructor
 public class SettingsController {
     private final SettingsService settingsService;
