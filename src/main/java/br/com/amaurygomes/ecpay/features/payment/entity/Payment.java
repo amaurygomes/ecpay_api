@@ -31,6 +31,14 @@ public class Payment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_user_id", nullable = false)
     private DeliveryUser deliveryUser;
+    @Column(name = "mp_payment_id", unique = true)
+    private Long mercadoPagoPaymentId;
+    @Lob
+    @Column(name = "mp_qr_code_base64")
+    private String mpQrCodeBase64;
+    @Lob
+    @Column(name = "mp_qr_code_text")
+    private String mpQrCodeText;
     @Column(name = "payment_date", nullable = false)
     private LocalDateTime paymentDate;
     private LocalDateTime creationDate;

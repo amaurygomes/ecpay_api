@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user/delivery")
+@RequestMapping("/api/user/delivery")
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Delivery Users" , description = "Endpoints para gerenciamento de entregadores" )
 public class DeliveryUserController {

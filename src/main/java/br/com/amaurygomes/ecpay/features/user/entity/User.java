@@ -30,7 +30,7 @@ public abstract class User implements UserDetails{
     private String encodedPassword;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role = Role.ADMIN;
+    private Role role;
     private boolean isActive = true;
 
     @Override

@@ -36,10 +36,12 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/auth/login", "/auth/register").permitAll(); //Endpoint Register Apenas para testes
-                    req.requestMatchers("/system/settings/**").permitAll();
-                    req.requestMatchers("/system/**").hasRole("SUPER_ADMIN");
-                    req.requestMatchers("/user/admin/**").hasAnyRole("SUPER_ADMIN", "ADMIN");
-                    req.requestMatchers("/user/delivery/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "DELIVERY");
+                    req.requestMatchers("/api/system/settings/**").hasRole("SUPER_ADMIN");
+                    req.requestMatchers("/api/system/**").hasRole("SUPER_ADMIN");
+                    req.requestMatchers("/api/payment/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "DELIVERY");
+                    req.requestMatchers("/api/user/admin/**").hasAnyRole("SUPER_ADMIN", "ADMIN");
+                    req.requestMatchers("/api/user/delivery/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "DELIVERY");
+                    req.requestMatchers("/api/webhooks/mercadopago").permitAll();
                     req.requestMatchers(
                             "/v3/api-docs/**",
                             "/swagger-ui/**",

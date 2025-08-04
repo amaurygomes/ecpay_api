@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user/admin")
+@RequestMapping("/api/user/admin")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Admin Users" , description = "Endpoints para gerenciamento de administradores" )
