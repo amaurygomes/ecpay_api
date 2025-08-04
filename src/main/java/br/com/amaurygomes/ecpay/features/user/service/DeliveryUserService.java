@@ -5,6 +5,8 @@ import br.com.amaurygomes.ecpay.features.user.dto.CreateDeliveryUserRequest;
 import br.com.amaurygomes.ecpay.features.user.dto.DeliveryUserResponse;
 import br.com.amaurygomes.ecpay.features.user.dto.UpdateDeliveryUserRequest;
 import br.com.amaurygomes.ecpay.features.user.entity.DeliveryUser;
+import br.com.amaurygomes.ecpay.features.user.entity.PlatformStatus;
+import br.com.amaurygomes.ecpay.features.user.entity.Role;
 import br.com.amaurygomes.ecpay.features.user.entity.User;
 import br.com.amaurygomes.ecpay.features.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,6 +38,9 @@ public class DeliveryUserService {
                 .name(request.name())
                 .login(request.login())
                 .vtr(request.vtr())
+                .role(Role.DELIVERY)
+                .isActive(true)
+                .platformStatus(PlatformStatus.INACTIVE)
                 .encodedPassword(passwordEncoder.encode(request.password()))
                 .build();
         User savedUser = userRepository.save(newDeliveryUser);
