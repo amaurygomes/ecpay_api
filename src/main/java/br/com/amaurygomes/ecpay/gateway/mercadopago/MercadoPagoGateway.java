@@ -1,6 +1,5 @@
 package br.com.amaurygomes.ecpay.gateway.mercadopago;
 
-import br.com.amaurygomes.ecpay.features.payment.entity.Payment;
 import com.mercadopago.client.payment.PaymentClient;
 import com.mercadopago.client.payment.PaymentCreateRequest;
 import com.mercadopago.client.payment.PaymentPayerRequest;

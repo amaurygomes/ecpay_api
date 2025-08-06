@@ -48,6 +48,7 @@ public class MercadoPagoGeneratePixPayment {
 
             Payment newPayment = Payment.builder()
                     .transactionId(internaTransactionId)
+                    .amount(paymentAmountValue)
                     .deliveryUser(deliveryUser)
                     .status(PaymentStatus.PENDING)
                     .billingCycle(billingCycle)

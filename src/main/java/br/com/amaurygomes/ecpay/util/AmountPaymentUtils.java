@@ -27,6 +27,10 @@ public class AmountPaymentUtils {
             case "WEEKLY":
                 return getWeeklyAmountValue(userId);
 
+            case "MONTHLY":
+                return getMonthlyAmountValue(userId);
+
+
             default:
                 throw new RuntimeException("Invalid billing cycle");
         }
@@ -42,13 +46,20 @@ public class AmountPaymentUtils {
             case THURSDAY -> paymentValues.getThursdayAmount();
             case FRIDAY -> paymentValues.getFridayAmount();
             case SATURDAY -> paymentValues.getSaturdayAmount();
-            default -> paymentValues.getDefaulDailytAmount();
+            default -> paymentValues.getDefaulDailyAmount();
         };
 
+        double amount;
+        if (dailyAmount != null && dailyAmount > 0){
+            amount = dailyAmount;
+        } else {
+            amount = paymentValues.getDefaulDailyAmount();
+        }
+
         if(applyFineAmount(userId)){
-            return dailyAmount + getPaymentValues().getFineAmount();
+            return amount + getPaymentValues().getFineAmount();
         }else{
-            return dailyAmount;
+            return amount;
         }
 
     }
@@ -62,10 +73,25 @@ public class AmountPaymentUtils {
         }
     }
 
+    private Double getMonthlyAmountValue(UUID userId){
+        PaymentValues paymentValues = getPaymentValues();
+        if (applyFineAmount(userId)){
+            return paymentValues.getDefaultMonthlyAmount() + getPaymentValues().getFineAmount();
+        }else{
+            return paymentValues.getDefaultMonthlyAmount();
+        }
+    }
+
+
+
     private boolean applyFineAmount(UUID userId) {
         Optional<Payment> lastPaymentOptional = paymentRepository.findTopByDeliveryUserIdOrderByPaymentDateDesc(userId);
 
         return lastPaymentOptional.map(payment -> {
+            if(payment.getPaymentDate() == null){
+                return false;
+            }
+
             if (payment.getBillingCycle() == BillingCycle.MONTHLY) {
                 return payment.getPaymentDate().toLocalDate().isBefore(LocalDate.now().minusMonths(2));
             } else {

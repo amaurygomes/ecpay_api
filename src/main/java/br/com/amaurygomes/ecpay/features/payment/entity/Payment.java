@@ -39,9 +39,11 @@ public class Payment {
     @Lob
     @Column(name = "mp_qr_code_text")
     private String mpQrCodeText;
-    @Column(name = "payment_date", nullable = false)
+    @Column(name = "payment_date")
     private LocalDateTime paymentDate;
+    @Column(name = "creation_date", nullable = false)
     private LocalDateTime creationDate;
+    @Column(name = "update_date")
     private LocalDateTime updateDate;
 
 }
