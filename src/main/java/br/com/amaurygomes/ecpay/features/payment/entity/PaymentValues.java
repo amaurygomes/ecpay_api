@@ -17,10 +17,12 @@ public class PaymentValues {
     private Long id;
     @Column(name ="fine_amount", nullable = false)
     private Double fineAmount = 10.0;
-    @Column(name ="default_amount", nullable = false)
-    private Double defaulDailytAmount = 10.0;
+    @Column(name ="default_daily_amount", nullable = false)
+    private Double defaulDailyAmount = 10.0;
     @Column(name ="default_weekly_amount", nullable = false)
     private Double defaultWeeklyAmount = 80.0;
+    @Column(name ="default_monthly_amount", nullable = false)
+    private Double defaultMonthlyAmount = 100.0;
     @Column(name ="monday_amount", nullable = false)
     private Double mondayAmount = 0.0;
     @Column(name ="tuesday_amount", nullable = false)
